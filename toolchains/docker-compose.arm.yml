@@ -1,0 +1,25 @@
+services:
+  build_armel:
+    build:
+      context: .
+      dockerfile: Dockerfile.arm
+    volumes:
+      - "..:/build"
+      - "../build.armel:/out"
+    command: "sh -c 'cd /out && cmake -DCMAKE_TOOLCHAIN_FILE=/build/toolchains/armel.cmake -DBUILD_SHARED=ON -DBUILD_SUFFIX=armel /build && make clean all'"
+  build_armhf:
+    build:
+      context: .
+      dockerfile: Dockerfile.arm
+    volumes:
+      - "..:/build"
+      - "../build.armhf:/out"
+    command: "sh -c 'cd /out && cmake -DCMAKE_TOOLCHAIN_FILE=/build/toolchains/armhf.cmake -DBUILD_SHARED=ON -DBUILD_SUFFIX=armhf /build && make clean all'"
+  build_aarch64:
+    build:
+      context: .
+      dockerfile: Dockerfile.arm
+    volumes:
+      - "..:/build"
+      - "../build.aarch64:/out"
+    command: "sh -c 'cd /out && cmake -DCMAKE_TOOLCHAIN_FILE=/build/toolchains/aarch64.cmake -DBUILD_SHARED=ON -DBUILD_SUFFIX=aarch64 /build && make clean all'"

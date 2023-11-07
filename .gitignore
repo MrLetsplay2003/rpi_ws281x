@@ -11,3 +11,6 @@ build/
 release/
 debug/
 settings.json
+build.armel/
+build.armhf/
+build.aarch64/

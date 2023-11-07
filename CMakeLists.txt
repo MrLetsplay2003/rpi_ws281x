@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.0)
+cmake_minimum_required(VERSION 3.1)
 
 # read and parse version file
 file(READ version PROJECT_VERSION)
@@ -13,6 +13,8 @@ project(rpi_ws281x VERSION ${PROJECT_VERSION})
 
 option(BUILD_SHARED "Build as shared library" OFF)
 option(BUILD_TEST "Build test application" ON)
+option(APPEND_BUILD_SUFFIX "Append build suffix" ON)
+set(BUILD_SUFFIX "${CMAKE_SYSTEM_PROCESSOR}" CACHE STRING "Build suffix")
 
 set(CMAKE_C_STANDARD 11)
 
@@ -60,6 +62,10 @@ if(BUILD_SHARED)
     add_library(${LIB_TARGET} SHARED ${LIB_SOURCES})
 else()
     add_library(${LIB_TARGET} ${LIB_SOURCES})
+endif()
+
+if(${APPEND_BUILD_SUFFIX})
+    set_target_properties(${LIB_TARGET} PROPERTIES OUTPUT_NAME "ws2811.${BUILD_SUFFIX}")
 endif()
 
 target_link_libraries(${LIB_TARGET} m)
