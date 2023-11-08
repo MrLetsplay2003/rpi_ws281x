@@ -14,3 +14,5 @@ settings.json
 build.armel/
 build.armhf/
 build.aarch64/
+extra/*
+!extra/.gitkeep

@@ -15,6 +15,7 @@ option(BUILD_SHARED "Build as shared library" OFF)
 option(BUILD_TEST "Build test application" ON)
 option(APPEND_BUILD_SUFFIX "Append build suffix" ON)
 set(BUILD_SUFFIX "${CMAKE_SYSTEM_PROCESSOR}" CACHE STRING "Build suffix")
+file(GLOB_RECURSE EXTRA_SOURCE_FILES "${PROJECT_SOURCE_DIR}/extra/*.c")
 
 set(CMAKE_C_STANDARD 11)
 
@@ -59,9 +60,9 @@ set(DEST_HEADERS_DIR include/ws2811)
 set(DEST_LIB_DIR lib)
 
 if(BUILD_SHARED)
-    add_library(${LIB_TARGET} SHARED ${LIB_SOURCES})
+    add_library(${LIB_TARGET} SHARED ${LIB_SOURCES} ${EXTRA_SOURCE_FILES})
 else()
-    add_library(${LIB_TARGET} ${LIB_SOURCES})
+    add_library(${LIB_TARGET} ${LIB_SOURCES} ${EXTRA_SOURCE_FILES})
 endif()
 
 if(${APPEND_BUILD_SUFFIX})
