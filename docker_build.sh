@@ -8,7 +8,7 @@ echo "Extra command is: ${COMMAND}"
 CMAKE_EXTRA="${CMAKE_EXTRA:-}"
 echo "CMake extra is: ${CMAKE_EXTRA}"
 
-BUILD_CMD="cd /out && rm -r /out/* && cmake -DCMAKE_TOOLCHAIN_FILE=/build/toolchains/armel.cmake -DBUILD_SHARED=ON -DBUILD_SUFFIX=armel ${CMAKE_EXTRA} /build && make clean all"
+BUILD_CMD="cd /out && rm -rf /out/* && cmake -DCMAKE_TOOLCHAIN_FILE=/build/toolchains/armel.cmake -DBUILD_SHARED=ON -DBUILD_SUFFIX=armel ${CMAKE_EXTRA} /build && make clean all"
 docker compose -f "${BASE_DIR}/toolchains/docker-compose.arm.yml" build --build-arg EXTRA_CMD="${COMMAND}"
 docker compose -f "${BASE_DIR}/toolchains/docker-compose.arm.yml" run --build --rm build_armel sh "-c" "${BUILD_CMD}"
 docker compose -f "${BASE_DIR}/toolchains/docker-compose.arm.yml" run --build --rm build_armhf sh "-c" "${BUILD_CMD}"
