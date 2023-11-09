@@ -1,6 +1,9 @@
 FROM ubuntu:22.04
 
+ARG EXTRA_CMD=true
+
 RUN apt update && apt upgrade -y
 RUN apt install -y build-essential gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi gcc-arm-linux-gnueabihf cmake make
+RUN ${EXTRA_CMD}
 
 WORKDIR /build
