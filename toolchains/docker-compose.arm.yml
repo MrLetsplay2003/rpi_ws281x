@@ -6,6 +6,7 @@ services:
     volumes:
       - "..:/build"
       - "../build.armel:/out"
+    user: "${UID}:${GID}"
   build_armhf:
     build:
       context: .
@@ -13,6 +14,7 @@ services:
     volumes:
       - "..:/build"
       - "../build.armhf:/out"
+    user: "${UID}:${GID}"
   build_aarch64:
     build:
       context: .
@@ -20,6 +22,7 @@ services:
     volumes:
       - "..:/build"
       - "../build.aarch64:/out"
+    user: "${UID}:${GID}"
   build_amd64:
     build:
       context: .
@@ -27,3 +30,4 @@ services:
     volumes:
       - "..:/build"
       - "../build.amd64:/out"
+    user: "${UID}:${GID}"
