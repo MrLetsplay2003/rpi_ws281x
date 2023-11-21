@@ -18,3 +18,6 @@ docker compose -f "${BASE_DIR}/toolchains/docker-compose.arm.yml" run --rm build
 
 BUILD_CMD="cd /out && rm -rf /out/* && cmake -DCMAKE_TOOLCHAIN_FILE=/build/toolchains/aarch64.cmake -DBUILD_SHARED=ON -DBUILD_SUFFIX=aarch64 ${CMAKE_EXTRA} /build && make clean all"
 docker compose -f "${BASE_DIR}/toolchains/docker-compose.arm.yml" run --rm build_aarch64 sh "-c" "${BUILD_CMD}"
+
+BUILD_CMD="cd /out && rm -rf /out/* && cmake -DBUILD_SHARED=ON -DBUILD_SUFFIX=amd64 ${CMAKE_EXTRA} /build && make clean all"
+docker compose -f "${BASE_DIR}/toolchains/docker-compose.arm.yml" run --rm build_amd64 sh "-c" "${BUILD_CMD}"
